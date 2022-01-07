@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type Cache interface {
 	Get(string) ([]byte, error)
 	Set(string, []byte) error
@@ -16,10 +18,12 @@ func NewMemoryCache() *MemoryCache {
 }
 
 func(mc *MemoryCache) Get(key string) ([]byte, error) {
-	return nil, nil
+	val, _ := mc.hash[key]
+	return val, nil
 }
 
 func(mc *MemoryCache) Set(key string, val []byte) error {
+	mc.hash[key] = val
 	return nil
 }
 
