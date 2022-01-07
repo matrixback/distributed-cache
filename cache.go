@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 type Cache interface {
 	Get(string) ([]byte, error)
 	Set(string, []byte) error

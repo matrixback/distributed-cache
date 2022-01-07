@@ -8,16 +8,15 @@ import (
 )
 
 type Server struct {
-	cache *MemoryCache
+	*MemoryCache
 }
 
 func NewServer() *Server {
-	cache := NewMemoryCache()
-	return &Server{cache: cache}
+	return &Server{MemoryCache: NewMemoryCache()}
 }
 
 func (s *Server) Serve() {
-	http.Handle("/cache/", &CacheHandler{s})
+	http.Handle("/cache/", &CacheHandler{Server: s})
 	fmt.Println("cache server is starting, listen at 6740...")
 	http.ListenAndServe(":6740", nil)
 }
@@ -33,7 +32,7 @@ func (ch *CacheHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if r.Method == http.MethodGet {
-		val, err := ch.Server.cache.Get(key)
+		val, err := ch.Server.Get(key)
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
@@ -53,7 +52,7 @@ func (ch *CacheHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		err := ch.Server.cache.Set(key, val)
+		err := ch.Server.Set(key, val)
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
