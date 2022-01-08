@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	cache := cache.NewMemoryCache()
+	cache := cache.NewBoltDB()
 	server := tcp.NewServer(cache)
 	server.Serve()
 }

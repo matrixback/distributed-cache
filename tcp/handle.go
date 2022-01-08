@@ -45,6 +45,7 @@ func (s *Server) get(conn net.Conn, reader *bufio.Reader) error {
 		return err
 	}
 	val, err := s.Get(key)
+	fmt.Println("get val ", val)
 	return sendResponse(val, err, conn)
 }
 
