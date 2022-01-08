@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"../cache"
+	"github.com/matrixback/distributed-cache/cache"
 )
 
 type Server struct {
@@ -14,7 +14,7 @@ type Server struct {
 }
 
 func NewServer() *Server {
-	return &Server{cache.MemoryCache: cache.NewMemoryCache()}
+	return &Server{MemoryCache: cache.NewMemoryCache()}
 }
 
 func (s *Server) Serve() {

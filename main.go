@@ -1,7 +1,7 @@
 package main
 
 import (
-	"./http"
+	"github.com/matrixback/distributed-cache/http"
 )
 func main() {
 	server := http.NewServer()
