@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"net"
+	"fmt"
 )
 
 func (s *Server) handle(conn net.Conn) {
@@ -34,6 +35,7 @@ func (s *Server) handle(conn net.Conn) {
 			log.Println("op error: ", err)
 			return
 		}
+		return
 	}
 }
 
@@ -51,6 +53,7 @@ func (s *Server) set(conn net.Conn, r *bufio.Reader) error {
 	if err != nil {
 		return err
 	}
+	fmt.Println("recv: ", key, val)
 	return sendResponse(nil, s.Set(key, val), conn)
 }
 
