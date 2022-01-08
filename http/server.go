@@ -10,7 +10,7 @@ import (
 )
 
 type Server struct {
-	*cache.MemoryCache
+	cache.MemoryCache
 }
 
 func NewServer() *Server {

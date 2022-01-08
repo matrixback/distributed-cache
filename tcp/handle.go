@@ -25,13 +25,13 @@ func (s *Server) handle(conn net.Conn) {
 		} else if op == 'G' {
 			err = s.get(conn, reader)
 		} else if op == 'D' {
-			err = s.del(conn, r)
+			err = s.del(conn, reader)
 		} else {
 			log.Println("invalid op: ", op)
 		}
 
 		if err != nil {
-			log.Println("op error: ", e)
+			log.Println("op error: ", err)
 			return
 		}
 	}

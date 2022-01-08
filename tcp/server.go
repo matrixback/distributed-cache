@@ -19,6 +19,7 @@ OCTET 取值 0x00~0xFF
 
 import (
 	"net"
+	"log"
 
 	"github.com/matrixback/distributed-cache/cache"
 )
@@ -28,6 +29,7 @@ type Server struct {
 }
 
 func (s *Server) Serve() {
+	log.Println("cache server is starting, port: 7641")
 	listen, err := net.Listen("tcp", ":7641")
 	if err != nil {
 		panic(err)

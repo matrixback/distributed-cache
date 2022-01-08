@@ -1,9 +1,12 @@
 package main
 
 import (
-	"github.com/matrixback/distributed-cache/http"
+	"github.com/matrixback/distributed-cache/tcp"
+	"github.com/matrixback/distributed-cache/cache"
 )
+
 func main() {
-	server := http.NewServer()
+	cache := cache.NewMemoryCache()
+	server := tcp.NewServer(cache)
 	server.Serve()
 }
