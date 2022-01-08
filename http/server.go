@@ -1,18 +1,20 @@
-package main
+package http
 
 import (
 	"fmt"
 	"strings"
 	"io/ioutil"
 	"net/http"
+
+	"../cache"
 )
 
 type Server struct {
-	*MemoryCache
+	*cache.MemoryCache
 }
 
 func NewServer() *Server {
-	return &Server{MemoryCache: NewMemoryCache()}
+	return &Server{cache.MemoryCache: cache.NewMemoryCache()}
 }
 
 func (s *Server) Serve() {

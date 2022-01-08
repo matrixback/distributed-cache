@@ -1,6 +1,9 @@
 package main
 
+import (
+	"./http"
+)
 func main() {
-	server := NewServer()
+	server := http.NewServer()
 	server.Serve()
 }
